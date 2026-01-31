@@ -31,10 +31,17 @@ body {
   font-size: 1.75rem;
   font-weight: bold;
   color: #005ea5;
+  display: flex;
+  align-items: center;
 }
 
 .govbr-logo span {
   color: #f39200;
+}
+
+.govbr-logo img {
+  height: 40px;
+  margin-right: 0.75rem;
 }
 
 .govbr-nav {
@@ -159,63 +166,45 @@ p {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #dcdcdc;
-  border-radius: 6cm;
+  border-radius: 6px;
   font-size: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* ======= BOTÕES ======= */
-.govbr-link {
-  color: #005ea5;
-  text-decoration: none;
+.br-button.primary {
+  width: 100%;
+  padding: 0.75rem 0;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 3cm; /* bordas bem arredondadas */
-  background-color: transparent;
-  border: 2px solid #005ea5;
-  transition: all 0.3s ease;
-  outline: none; /* remove o quadrado azul padrão */
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
 .govbr-link {
   color: #005ea5;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
-  border-radius: 3cm;
+  border-radius: 30px;
   background-color: transparent;
   border: 2px solid #005ea5;
   transition: all 0.3s ease;
   outline: none;
-
-  text-decoration: none !important; /* remove sublinhado de vez */
+  text-decoration: none !important;
 }
 
 .govbr-link:hover,
 .govbr-link:focus,
 .govbr-link:active {
-  background-color: #005ea5;   /* fundo azul */
-  color: #ffffff !important;   /* texto branco */
-  text-decoration: none !important; /* garante que não volte */
+  background-color: #005ea5;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
-
-
 
 /* ======= ESPAÇAMENTOS ======= */
-.mb-3 {
-  margin-bottom: 1rem !important;
-}
-
-.mb-4 {
-  margin-bottom: 1.5rem !important;
-}
-
-.mt-4 {
-  margin-top: 1.5rem !important;
-}
-
-.mt-5 {
-  margin-top: 3rem !important;
-}
+.mb-3 { margin-bottom: 1rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+.mt-5 { margin-top: 3rem !important; }
 
 /* ======= LISTAS ======= */
 .br-list {
@@ -291,22 +280,10 @@ a:hover {
 }
 
 @media (max-width: 576px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .br-button.primary {
-    font-size: 0.95rem;
-  }
-
-  .govbr-logo {
-    font-size: 1.5rem;
-  }
-
-  .govbr-nav a {
-    display: block;
-    margin: 0.5rem 0;
-  }
+  h1 { font-size: 1.5rem; }
+  .br-button.primary { font-size: 0.95rem; }
+  .govbr-logo { font-size: 1.5rem; }
+  .govbr-nav a { display: block; margin: 0.5rem 0; }
 }
 
 /* ======= MODO ESCURO ======= */

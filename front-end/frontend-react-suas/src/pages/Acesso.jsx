@@ -1,25 +1,27 @@
+// src/pages/Acesso.jsx
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Acesso() {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     if (email && senha) {
-      navigate("/painel");
+      login();            // autentica o usuário
+      navigate("/painel"); // redireciona para Painel
     } else {
       alert("Preencha e-mail e senha.");
     }
-  }
+  };
 
   return (
-    <div className="container-lg mt-5" style={{ maxWidth: 400 }}>
-      <h1 className="text-center mb-4">Acesso ao Sistema</h1>
-
+    <div style={{ maxWidth: 400, margin: "0 auto" }}>
+      <h1>Acesso</h1>
       <form className="br-form" onSubmit={handleSubmit}>
         <div className="br-input mb-3">
           <label htmlFor="email">E-mail</label>
@@ -32,7 +34,6 @@ export default function Acesso() {
             required
           />
         </div>
-
         <div className="br-input mb-4">
           <label htmlFor="senha">Senha</label>
           <input
@@ -44,8 +45,7 @@ export default function Acesso() {
             required
           />
         </div>
-
-        <button className="br-button primary w-100" type="submit">
+        <button type="submit" className="br-button primary">
           Acessar
         </button>
       </form>

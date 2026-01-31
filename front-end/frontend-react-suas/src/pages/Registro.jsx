@@ -1,39 +1,43 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
+// Exportamos o array para o Painel poder usar
+export const usuariosCadastrados = [
+  { email: "joao@email.com", dataNascimento: "2000-01-01" },
+  { email: "maria@email.com", dataNascimento: "1995-05-10" },
+];
 
 export default function Registro() {
   const navigate = useNavigate();
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
   const [senha, setSenha] = useState("");
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (nome && email && senha) {
+    const usuarioExistente = usuariosCadastrados.find(
+      (usuario) => usuario.email.toLowerCase() === email.toLowerCase()
+    );
+
+    if (usuarioExistente) {
+      alert("Usuário já registrado. Entre em contato com o administrador.");
+      return;
+    }
+
+    if (email && dataNascimento && senha) {
+      usuariosCadastrados.push({ email, dataNascimento, senha });
       alert("Cadastro realizado com sucesso!");
-      navigate("/");
+      navigate("/"); // redireciona para Acesso
     } else {
       alert("Preencha todos os campos.");
     }
-  }
+  };
 
   return (
-    <div className="container-lg mt-5" style={{ maxWidth: 400 }}>
-      <h1 className="text-center mb-4">Registro</h1>
-
+    <div style={{ maxWidth: 400, margin: "0 auto" }}>
+      <h1>Registro</h1>
       <form className="br-form" onSubmit={handleSubmit}>
-        <div className="br-input mb-3">
-          <label htmlFor="nome">Nome</label>
-          <input
-            id="nome"
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            required
-          />
-        </div>
-
         <div className="br-input mb-3">
           <label htmlFor="email">E-mail</label>
           <input
@@ -41,6 +45,17 @@ export default function Registro() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="br-input mb-3">
+          <label htmlFor="dataNascimento">Data de Nascimento</label>
+          <input
+            id="dataNascimento"
+            type="date"
+            value={dataNascimento}
+            onChange={(e) => setDataNascimento(e.target.value)}
             required
           />
         </div>
@@ -56,7 +71,7 @@ export default function Registro() {
           />
         </div>
 
-        <button className="br-button primary w-100" type="submit">
+        <button type="submit" className="br-button primary">
           Registrar
         </button>
       </form>
