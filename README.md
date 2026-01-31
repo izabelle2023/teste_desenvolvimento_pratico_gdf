@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# Projeto Teste de Desenvolvimento Prático GDF
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositório contém o projeto completo desenvolvido para o teste prático do GDF, incluindo **Front-end em React** e **Back-end em Laravel**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🗂 Estrutura do repositório
 
-### `npm start`
+teste_desenvolvimento_pratico_gdf/
+├─ back-end/ # API Laravel
+│ ├─ app/
+│ ├─ bootstrap/
+│ ├─ routes/api.php
+│ ├─ artisan
+│ ├─ composer.json
+│ └─ .env.example
+├─ public/ # Front-end build/public
+├─ src/ # Front-end código-fonte React
+├─ package.json
+└─ README.md
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ⚙️ Back-end (Laravel)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A API possui **três endpoints principais**:
 
-### `npm run build`
+### 1) POST `/api/acessar`
+- Recebe `email` e `senha` via form-data
+- Validação fictícia de usuário
+- Retorna JSON de sucesso ou erro
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Exemplo de request:**
+email: admin@email.com
+senha: 123456
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Resposta de sucesso:**
+```json
+{
+  "success": true,
+  "email": "admin@email.com"
+}
+2) POST /api/registrar
+Recebe email, senha e dt_nascimento via form-data
 
-### `npm run eject`
+Valida se usuário já existe (fictício) e se é maior de 18 anos
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Retorna JSON de sucesso ou erro
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Exemplo de request:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+email: user@email.com
+senha: senha123
+dt_nascimento: 2000-01-01
+3) GET /api/listagem-usuarios
+Retorna lista fictícia de usuários em JSON
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Exemplo de resposta:
 
-## Learn More
+{
+  "success": true,
+  "usuarios": [
+    { "email": "admin@email.com" },
+    { "email": "user@email.com" }
+  ]
+}
+💻 Rodando o back-end localmente
+Entre na pasta do back-end:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+cd back-end
+Instale as dependências:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+composer install
+Copie o arquivo .env.example para .env:
 
-### Code Splitting
+cp .env.example .env
+Gere a chave da aplicação:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+php artisan key:generate
+Rode o servidor:
 
-### Analyzing the Bundle Size
+php artisan serve
+A API estará disponível em: http://127.0.0.1:8000/api
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+⚛️ Front-end (React)
+Entre na raiz do projeto (onde está o package.json):
 
-### Making a Progressive Web App
+cd ..
+Instale as dependências:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm install
+Rode o front-end:
 
-### Advanced Configuration
+npm start
+O front-end estará disponível em: http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+🧪 Testes com Postman
+Endpoint	Método	Body/Params
+/api/acessar	POST	form-data (email, senha)
+/api/registrar	POST	form-data (email, senha, dt_nascimento)
+/api/listagem-usuarios	GET	—
+⚠️ Observações importantes
+O back-end é fictício, os usuários são simulados em memória.
 
-### Deployment
+Não subir arquivos sensíveis:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+back-end/vendor/
 
-### `npm run build` fails to minify
+back-end/.env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Código pronto para testes locais e avaliação.
+
+📌 Contato
+Desenvolvido por: Izabelle Silva
